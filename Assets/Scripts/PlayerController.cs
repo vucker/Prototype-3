@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;
     public bool isGameOver = false;
     private Rigidbody playerRb;
+    private Animator playerAn;
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody>();
+        playerAn = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
+            playerAn.SetTrigger("Jump_trig");
         }
 
     }
