@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class MoveLeft : MonoBehaviour
 {
     public float speed = 2f;
+    private int leftBound = -5;
     private PlayerController playerControllerScript;
     private void Awake()
     {
@@ -17,6 +18,10 @@ public class MoveLeft : MonoBehaviour
         if (playerControllerScript.isGameOver == false) 
         { 
             transform.Translate(Vector3.left * speed * Time.deltaTime);
+        }
+        if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(gameObject);
         }
     }
 }
