@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public float jumpForce;
     public float gravityModifier;
+    public bool isGrounded = true;
     private Rigidbody playerRb;
     private void Awake()
     {
@@ -18,8 +19,13 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+
+        }
 
     }
+    private void OnCollisionEnter(Collision collision) => isGrounded = true;
 }
