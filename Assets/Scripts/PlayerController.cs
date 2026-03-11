@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
         {
             isGameOver = true;
             Debug.Log("GameOver");
+            playerAn.SetBool("Death_b", true);
+            playerAn.SetInteger("DeathType_int", 1);
         }
     } 
 
