@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float gravityModifier;
     public bool isGrounded = true;
+    public bool isGameOver = false;
     private Rigidbody playerRb;
     private void Awake()
     {
@@ -23,9 +24,20 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
-
         }
 
     }
-    private void OnCollisionEnter(Collision collision) => isGrounded = true;
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            isGameOver = true;
+            Debug.Log("GameOver");
+        }
+    } 
+
 }
