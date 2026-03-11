@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
-        playerRb.AddForce(Vector3.up * 1000);
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) 
+            playerRb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+
     }
 }
